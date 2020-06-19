@@ -35,11 +35,11 @@ namespace kol2.Services
             {
                 throw new EventDoesNotExistsException($"Event with an id={artist_Event.IdEvent} does not exists");
             }
-            if(ev.StartDate < DateTime.Now)
+            if (ev.StartDate.CompareTo(DateTime.Now) < 0)
             {
                 throw new EventHasAlreadyStartedException($"Event with an id={artist_Event.IdEvent} has already started");
             }
-            if(!(ev.StartDate < artist_Event.PerformanceDate && artist_Event.PerformanceDate < ev.EndDate))
+            if(!(ev.StartDate.CompareTo(artist_Event.PerformanceDate) < 0 && artist_Event.PerformanceDate.CompareTo(ev.EndDate) < 0))
             {
                 throw new PerformanceDateIsNotWithinEventTime("Performance date is not within event time");
             }
